@@ -1,0 +1,24 @@
+{
+  "name": "ocmi-dmillan-app-nest-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ocmi-dmillan-app-nest-api/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ocmi-dmillan-app-nest-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ocmi-dmillan-app-nest-api:build:development"
+        },
+        "production": {
+          "buildTarget": "ocmi-dmillan-app-nest-api:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
