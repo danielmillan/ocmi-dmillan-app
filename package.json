@@ -6,7 +6,10 @@
     "prisma": "nx run ocmi-dmillan-prisma-schema:prisma",
     "types": "nx run ocmi-dmillan-prisma-schema:generate-types",
     "migrate": "nx run ocmi-dmillan-prisma-schema:migrate",
-    "backend": "nx serve ocmi-dmillan-app-nest-api"
+    "backend": "nx serve ocmi-dmillan-app-nest-api",
+    "frontend-build": "nx run ocmi-dmillan-app-next-web-ui:build",
+    "frontend-dev": "nx dev ocmi-dmillan-app-next-web-ui",
+    "frontend": "nx run ocmi-dmillan-app-next-web-ui:start"
   },
   "private": true,
   "dependencies": {
