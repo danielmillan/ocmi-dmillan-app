@@ -2,12 +2,18 @@
   "name": "@ocmi-dmillan-app/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prisma": "nx run ocmi-dmillan-prisma-schema:prisma",
+    "types": "nx run ocmi-dmillan-prisma-schema:generate-types",
+    "migrate": "nx run ocmi-dmillan-prisma-schema:migrate",
+    "backend": "nx serve ocmi-dmillan-app-nest-api"
+  },
   "private": true,
   "dependencies": {
     "@nestjs/common": "^10.0.2",
     "@nestjs/core": "^10.0.2",
     "@nestjs/platform-express": "^10.0.2",
+    "@prisma/client": "^5.9.1",
     "axios": "^1.6.0",
     "next": "14.0.4",
     "react": "18.2.0",
@@ -54,6 +60,7 @@
     "jest-environment-node": "^29.4.1",
     "nx": "18.0.3",
     "prettier": "^2.6.2",
+    "prisma": "^5.9.1",
     "sass": "1.62.1",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",

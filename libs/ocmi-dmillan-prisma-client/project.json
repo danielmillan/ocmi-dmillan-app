@@ -1,0 +1,9 @@
+{
+  "name": "ocmi-dmillan-prisma-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ocmi-dmillan-prisma-client/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": [],
+  "implicitDependencies": ["ocmi-dmillan-prisma-schema"]
+}

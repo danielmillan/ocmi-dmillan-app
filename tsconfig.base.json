@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ocmi-dmillan-app/data-access-modules": [
+        "libs/data-access-modules/src/index.ts"
+      ],
+      "@ocmi-dmillan-app/ocmi-dmillan-prisma-client": [
+        "libs/ocmi-dmillan-prisma-client/src/index.ts"
+      ],
+      "@ocmi-dmillan-app/ocmi-dmillan-prisma-schema": [
+        "libs/ocmi-dmillan-prisma-schema/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

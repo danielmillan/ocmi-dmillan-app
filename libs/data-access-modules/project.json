@@ -1,0 +1,8 @@
+{
+  "name": "data-access-modules",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/data-access-modules/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}
