@@ -1,0 +1,8 @@
+{
+  "name": "data-access-timesheets",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/data-access-timesheets/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}

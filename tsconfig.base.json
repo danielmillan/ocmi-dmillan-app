@@ -15,8 +15,26 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ocmi-dmillan-app/data-access-customers": [
+        "libs/data-access-customers/src/index.ts"
+      ],
+      "@ocmi-dmillan-app/data-access-employees": [
+        "libs/data-access-employees/src/index.ts"
+      ],
+      "@ocmi-dmillan-app/data-access-logs": [
+        "libs/data-access-logs/src/index.ts"
+      ],
       "@ocmi-dmillan-app/data-access-modules": [
         "libs/data-access-modules/src/index.ts"
+      ],
+      "@ocmi-dmillan-app/data-access-roles": [
+        "libs/data-access-roles/src/index.ts"
+      ],
+      "@ocmi-dmillan-app/data-access-timesheets": [
+        "libs/data-access-timesheets/src/index.ts"
+      ],
+      "@ocmi-dmillan-app/data-access-users": [
+        "libs/data-access-users/src/index.ts"
       ],
       "@ocmi-dmillan-app/ocmi-dmillan-prisma-client": [
         "libs/ocmi-dmillan-prisma-client/src/index.ts"

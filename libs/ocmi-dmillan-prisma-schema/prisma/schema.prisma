@@ -8,8 +8,106 @@ datasource db {
 }
 
 model Modules {
+    id               Int                @id @default(autoincrement())
+    name             String             @unique
+    label            String
+    isActive         Boolean            @default(true)
+    Moduler_Per_Role Moduler_Per_Role[]
+    Logs             Logs[]
+}
+
+model Logs {
+    id          Int     @id @default(autoincrement())
+    moduleId    Int
+    module      Modules @relation(fields: [moduleId], references: [id])
+    actionType  String
+    description String
+}
+
+model Roles {
+    id               Int                @id @default(autoincrement())
+    name             String             @unique
+    isActive         Boolean            @default(true)
+    Moduler_Per_Role Moduler_Per_Role[]
+    Users            Users[]
+}
+
+model Moduler_Per_Role {
     id       Int     @id @default(autoincrement())
-    name     String  @unique
-    label    String
-    isActive Boolean @default(true)
+    roleId   Int
+    role     Roles   @relation(fields: [roleId], references: [id])
+    moduleId Int
+    module   Modules @relation(fields: [moduleId], references: [id])
+    action   String
+}
+
+model Users {
+    id            Int      @id @default(autoincrement())
+    roleId        Int
+    role          Roles    @relation(fields: [roleId], references: [id])
+    name          String
+    lastName      String
+    email         String
+    password      String
+    activeAccount Boolean  @default(false)
+    lastLogin     DateTime
+    isActive      Boolean  @default(true)
+}
+
+model Customers {
+    id         Int          @id @default(autoincrement())
+    name       String
+    email      String
+    password   String
+    phone      String
+    address    String
+    isActive   Boolean      @default(true)
+    Employees  Employees[]
+    Timesheets Timesheets[]
+}
+
+model Payment_Types {
+    id         Int         @id @default(autoincrement())
+    needUnits  Boolean     @default(false)
+    labelUnits String?
+    value      String
+    isActive   Boolean     @default(true)
+    Employees  Employees[]
+}
+
+model Employees {
+    id                       Int                        @id @default(autoincrement())
+    customerId               Int
+    customer                 Customers                  @relation(fields: [customerId], references: [id])
+    name                     String
+    lastName                 String
+    paymentType              Int
+    payment                  Payment_Types              @relation(fields: [paymentType], references: [id])
+    paymentAmount            BigInt
+    isActive                 Boolean                    @default(true)
+    Employees_Per_Timesheets Employees_Per_Timesheets[]
+}
+
+model Timesheets {
+    id                       Int                        @id @default(autoincrement())
+    customerId               Int
+    customer                 Customers                  @relation(fields: [customerId], references: [id])
+    payPeroidStart           DateTime
+    payPeroidEnd             DateTime
+    checkDate                DateTime
+    checkNumber              BigInt
+    grossPayroll             BigInt
+    remarks                  String?
+    status                   String
+    Employees_Per_Timesheets Employees_Per_Timesheets[]
+}
+
+model Employees_Per_Timesheets {
+    id         Int        @id @default(autoincrement())
+    timsheetId Int
+    timesheet  Timesheets @relation(fields: [timsheetId], references: [id])
+    employeeId Int
+    employee   Employees  @relation(fields: [employeeId], references: [id])
+    units      Int?
+    grossWages BigInt
 }

@@ -1,0 +1,8 @@
+{
+  "name": "data-access-customers",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/data-access-customers/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}
