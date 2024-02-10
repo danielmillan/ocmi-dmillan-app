@@ -1,4 +1,45 @@
+import * as bcrypt from 'bcryptjs';
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { UsersService } from '@ocmi-dmillan-app/data-access-users';
+import { Users } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
+import { IAuthResponse } from '../../types/Responses/AuthResponse';
 
 @Injectable()
-export class AuthService {}
+export class AuthService {
+  constructor(
+    private readonly usersService: UsersService,
+    private jwtService: JwtService
+  ) {}
+
+  async findByEmail(email: string): Promise<Users | null> {
+    try {
+      return await this.usersService.getUser({ email });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async validateUser(email: string, pass: string): Promise<Users | null> {
+    const user: Users = await this.findByEmail(email);
+    if (user && (await bcrypt.compare(pass, user.password))) {
+      const payload = user;
+      delete payload.password;
+      return payload;
+    }
+    return null;
+  }
+
+  async login(user: Users): Promise<IAuthResponse> {
+    const payload = {
+      id: user.id,
+      name: user.name,
+      lastName: user.lastName,
+      email: user.email,
+      roleId: user.roleId,
+    };
+    return {
+      token: this.jwtService.sign(payload),
+    };
+  }
+}

@@ -12,7 +12,7 @@ model Modules {
     name             String             @unique
     label            String
     isActive         Boolean            @default(true)
-    Moduler_Per_Role Moduler_Per_Role[]
+    Modules_Per_Role Modules_Per_Role[]
     Logs             Logs[]
 }
 
@@ -28,30 +28,32 @@ model Roles {
     id               Int                @id @default(autoincrement())
     name             String             @unique
     isActive         Boolean            @default(true)
-    Moduler_Per_Role Moduler_Per_Role[]
+    Modules_Per_Role Modules_Per_Role[]
     Users            Users[]
 }
 
-model Moduler_Per_Role {
+model Modules_Per_Role {
     id       Int     @id @default(autoincrement())
     roleId   Int
     role     Roles   @relation(fields: [roleId], references: [id])
     moduleId Int
     module   Modules @relation(fields: [moduleId], references: [id])
     action   String
+
+    @@unique([moduleId, roleId, action])
 }
 
 model Users {
-    id            Int      @id @default(autoincrement())
+    id            Int       @id @default(autoincrement())
     roleId        Int
-    role          Roles    @relation(fields: [roleId], references: [id])
+    role          Roles     @relation(fields: [roleId], references: [id])
     name          String
     lastName      String
-    email         String
+    email         String    @unique
     password      String
-    activeAccount Boolean  @default(false)
-    lastLogin     DateTime
-    isActive      Boolean  @default(true)
+    activeAccount Boolean   @default(false)
+    lastLogin     DateTime?
+    isActive      Boolean   @default(true)
 }
 
 model Customers {

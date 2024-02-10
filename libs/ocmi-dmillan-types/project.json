@@ -1,0 +1,8 @@
+{
+  "name": "ocmi-dmillan-types",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ocmi-dmillan-types/src",
+  "projectType": "library",
+  "targets": {},
+  "tags": []
+}

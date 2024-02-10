@@ -41,6 +41,9 @@
       ],
       "@ocmi-dmillan-app/ocmi-dmillan-prisma-schema": [
         "libs/ocmi-dmillan-prisma-schema/src/index.ts"
+      ],
+      "@ocmi-dmillan-app/ocmi-dmillan-types": [
+        "libs/ocmi-dmillan-types/src/index.ts"
       ]
     }
   },
