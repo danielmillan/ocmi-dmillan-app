@@ -44,28 +44,29 @@ model Modules_Per_Role {
 }
 
 model Users {
-    id            Int       @id @default(autoincrement())
+    id            Int        @id @default(autoincrement())
+    customerId    Int?
+    customer      Customers? @relation(fields: [customerId], references: [id])
     roleId        Int
-    role          Roles     @relation(fields: [roleId], references: [id])
+    role          Roles      @relation(fields: [roleId], references: [id])
     name          String
     lastName      String
-    email         String    @unique
+    email         String     @unique
     password      String
-    activeAccount Boolean   @default(false)
+    activeAccount Boolean    @default(false)
     lastLogin     DateTime?
-    isActive      Boolean   @default(true)
+    isActive      Boolean    @default(true)
 }
 
 model Customers {
     id         Int          @id @default(autoincrement())
     name       String
-    email      String
-    password   String
     phone      String
     address    String
     isActive   Boolean      @default(true)
     Employees  Employees[]
     Timesheets Timesheets[]
+    Users      Users[]
 }
 
 model Payment_Types {
@@ -94,8 +95,8 @@ model Timesheets {
     id                       Int                        @id @default(autoincrement())
     customerId               Int
     customer                 Customers                  @relation(fields: [customerId], references: [id])
-    payPeroidStart           DateTime
-    payPeroidEnd             DateTime
+    payPeriodStart           DateTime
+    payPeriodEnd             DateTime
     checkDate                DateTime
     checkNumber              BigInt
     grossPayroll             BigInt

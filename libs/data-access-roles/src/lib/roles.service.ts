@@ -48,6 +48,34 @@ export class RolesService {
     }
   }
 
+  async loadActionsFromRole(id: number) {
+    try {
+      return await this.prismaService.roles
+        .findUnique({
+          where: { id },
+          select: {
+            Modules_Per_Role: {
+              select: {
+                module: {
+                  select: {
+                    name: true,
+                  },
+                },
+                action: true,
+              },
+            },
+          },
+        })
+        .then((actions) =>
+          actions?.Modules_Per_Role.map(
+            (action) => `${action.module.name}:${action.action}`
+          )
+        );
+    } catch (error: any) {
+      throw new Error(error);
+    }
+  }
+
   async updateRole(options: {
     where: Prisma.RolesWhereUniqueInput;
     data: Prisma.RolesUpdateInput;

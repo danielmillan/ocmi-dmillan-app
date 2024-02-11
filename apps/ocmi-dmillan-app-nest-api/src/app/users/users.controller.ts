@@ -18,11 +18,11 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UsersService } from '@ocmi-dmillan-app/data-access-users';
 import { Prisma } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
 import { UserDto } from '../../types/UserDTO';
 import { UnauthorizedResponse } from '../../types/Responses/Unauthorized';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('users')
 @ApiTags('Users')
@@ -90,7 +90,7 @@ export class UsersController {
   })
   async getUser(@Param('id') id: string) {
     try {
-      return this.usersService.getUser({ id: Number(id) });
+      return this.usersService.getUser({ where: { id: Number(id) } });
     } catch (error) {
       throw new InternalServerErrorException({
         status: HttpStatus.INTERNAL_SERVER_ERROR,

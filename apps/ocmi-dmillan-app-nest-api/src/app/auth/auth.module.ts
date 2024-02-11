@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { DataAccessUsersModule } from '@ocmi-dmillan-app/data-access-users';
+import { DataAccessRolesModule } from '@ocmi-dmillan-app/data-access-roles';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -14,6 +15,7 @@ import { LocalStrategy } from './local.strategy';
       envFilePath: '.env',
     }),
     DataAccessUsersModule,
+    DataAccessRolesModule,
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],

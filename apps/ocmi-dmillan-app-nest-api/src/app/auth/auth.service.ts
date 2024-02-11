@@ -2,8 +2,8 @@ import * as bcrypt from 'bcryptjs';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '@ocmi-dmillan-app/data-access-users';
-import { Users } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
-import { IAuthResponse } from '../../types/Responses/AuthResponse';
+import { EScopesApp, IAuthResponse } from '../../types/Responses/AuthResponse';
+import { Prisma, Users } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +14,29 @@ export class AuthService {
 
   async findByEmail(email: string): Promise<Users | null> {
     try {
-      return await this.usersService.getUser({ email });
+      return await this.usersService.getUser({
+        where: { email },
+        select: {
+          id: true,
+          customer: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          role: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          name: true,
+          lastName: true,
+          email: true,
+          password: true,
+          isActive: true,
+        },
+      });
     } catch (error) {
       throw new Error(error);
     }
@@ -23,6 +45,10 @@ export class AuthService {
   async validateUser(email: string, pass: string): Promise<Users | null> {
     const user: Users = await this.findByEmail(email);
     if (user && (await bcrypt.compare(pass, user.password))) {
+      this.usersService.updateUser({
+        where: { id: user.id },
+        data: { lastLogin: new Date() },
+      });
       const payload = user;
       delete payload.password;
       return payload;
@@ -30,16 +56,19 @@ export class AuthService {
     return null;
   }
 
-  async login(user: Users): Promise<IAuthResponse> {
+  async login(user: Prisma.UsersSelect): Promise<IAuthResponse> {
     const payload = {
       id: user.id,
+      customer: user.customer,
+      role: user.role,
       name: user.name,
       lastName: user.lastName,
       email: user.email,
-      roleId: user.roleId,
+      isActive: user.isActive,
     };
     return {
       token: this.jwtService.sign(payload),
+      scope: user.customer ? EScopesApp.CUSTOMER : EScopesApp.OPERATION,
     };
   }
 }

@@ -40,10 +40,15 @@ export class UsersService {
     }
   }
 
-  async getUser(userWhereUniqueInput: Prisma.UsersWhereUniqueInput) {
+  async getUser(options: {
+    where: Prisma.UsersWhereUniqueInput;
+    select?: Prisma.UsersSelect;
+  }) {
     try {
+      const { where, select } = options;
       return await this.prismaService.users.findUnique({
-        where: userWhereUniqueInput,
+        where,
+        select,
       });
     } catch (error: any) {
       throw new Error(error);
