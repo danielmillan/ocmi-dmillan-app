@@ -66,7 +66,22 @@ export class UsersController {
   })
   async getUsers() {
     try {
-      return this.usersService.getUsers({});
+      return this.usersService.getUsers({
+        select: {
+          id: true,
+          name: true,
+          lastName: true,
+          email: true,
+          role: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          isActive: true,
+          lastLogin: true,
+        },
+      });
     } catch (error) {
       throw new InternalServerErrorException({
         status: HttpStatus.INTERNAL_SERVER_ERROR,

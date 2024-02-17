@@ -23,6 +23,7 @@ import { EmployeesService } from '@ocmi-dmillan-app/data-access-employees';
 import { Prisma } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
 import { EmployeeDto } from '../../types/EmployeeDTO';
 import { UnauthorizedResponse } from '../../types/Responses/Unauthorized';
+import { PaymentTypesDto } from '../../types/PaymentTypesDTO';
 
 @Controller('employees')
 @ApiTags('Employees')
@@ -68,7 +69,51 @@ export class EmployeesController {
   })
   async getEmployees() {
     try {
-      return this.employeesService.getEmployees({});
+      return await this.employeesService.getEmployees({
+        select: {
+          id: true,
+          name: true,
+          lastName: true,
+          customer: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          paymentAmount: true,
+          payment: {
+            select: {
+              id: true,
+              value: true,
+            },
+          },
+          isActive: true,
+        },
+        orderBy: { name: 'asc' },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException({
+        status: HttpStatus.INTERNAL_SERVER_ERROR,
+        error: {
+          code: error.code ? error.code : error,
+          message: error.message ? error.message : error,
+        },
+      });
+    }
+  }
+
+  @Get('catalogs/payment/types')
+  @ApiOkResponse({
+    description: 'List returned correctly.',
+    type: [PaymentTypesDto],
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Unauthorized resource.',
+    type: UnauthorizedResponse,
+  })
+  async getPaymentTypes() {
+    try {
+      return await this.employeesService.getPaymentTypes();
     } catch (error) {
       throw new InternalServerErrorException({
         status: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -92,7 +137,9 @@ export class EmployeesController {
   })
   async getEmployee(@Param('id') id: string) {
     try {
-      return this.employeesService.getEmployee({ where: { id: Number(id) } });
+      return await this.employeesService.getEmployee({
+        where: { id: Number(id) },
+      });
     } catch (error) {
       throw new InternalServerErrorException({
         status: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -120,7 +167,7 @@ export class EmployeesController {
     @Param('id') id: String
   ) {
     try {
-      return this.employeesService.updateEmployee({
+      return await this.employeesService.updateEmployee({
         where: {
           id: Number(id),
         },
@@ -149,7 +196,7 @@ export class EmployeesController {
   })
   async deleteEmployee(@Param('id') id: String) {
     try {
-      return this.employeesService.deleteEmployee({ id: Number(id) });
+      return await this.employeesService.deleteEmployee({ id: Number(id) });
     } catch (error) {
       throw new InternalServerErrorException({
         status: HttpStatus.INTERNAL_SERVER_ERROR,

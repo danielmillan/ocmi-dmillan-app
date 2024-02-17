@@ -1,0 +1,114 @@
+{
+  "menu": {
+    "home": "Home",
+    "customers": "Customers",
+    "employees": "Employees",
+    "timesheets": "Timesheets",
+    "config": "Config",
+    "roles": "Roles",
+    "users": "Users"
+  },
+  "labels": {
+    "email": "Email",
+    "password": "Password",
+    "forgot-password": "I forgot my password",
+    "login": "Log in to your account",
+    "parameters": "Parameters",
+    "language": "Application language:"
+  },
+  "forms": {
+    "required-validation": "Enter the information",
+    "select-validation": "Select an option",
+    "employees": {
+      "name": "First names",
+      "lastName": "Last name",
+      "customer": "Customer",
+      "customer-ph": "Select a customer",
+      "paymentType": "Payment Type",
+      "paymentType-ph": "Select a type",
+      "paymentAmount": "Amount",
+      "button-create": "CREATE",
+      "button-edit": "EDIT"
+    },
+    "notifications": {
+      "success": "Operation successfully completed",
+      "error": "Operation could not be completed"
+    },
+    "confirmation": {
+      "content": "Are you sure you want to proceed?",
+      "header": "Confirmation"
+    }
+  },
+  "pages": {
+    "login": {
+      "buttons": {
+        "submit": "LOGIN"
+      }
+    },
+    "forgot": {
+      "buttons": {
+        "submit": "RESET PASSWORD"
+      }
+    },
+    "form-validations": {
+      "required": {
+        "email": "Enter your email address.",
+        "password": "Enter the password."
+      },
+      "format": {
+        "email": "The email is not valid. E.g. example@email.com"
+      }
+    }
+  },
+  "table": {
+    "headers": {
+      "users": {
+        "id": "ID",
+        "name": "Name",
+        "email": "Email",
+        "role": "Role"
+      },
+      "roles": {
+        "id": "ID",
+        "name": "Name"
+      },
+      "customers": {
+        "id": "ID",
+        "name": "Name",
+        "address": "Address"
+      },
+      "employees": {
+        "id": "ID",
+        "name": "Name",
+        "lastName": "last name",
+        "paymentType": "Payment Type",
+        "paymentAmount": "Amount"
+      }
+    },
+    "acions": "Actions",
+    "currentPageTemplate": "Showing {first} to {last} of {totalRecords}",
+    "emptyMessage": "No data available"
+  },
+  "button-actions": {
+    "create-customer": "Create Customer",
+    "edit-customer": "Edit Customer",
+    "create-employee": "Create Employee",
+    "edit-employee": "Edit Employee",
+    "create-role": "Create Role",
+    "edit-role": "Edit Role",
+    "create-timesheet": "Register Payroll",
+    "create-user": "Create User",
+    "edit-user": "Edit User"
+  },
+  "tooltips": {
+    "edit": "Edit Record",
+    "delete": "Delete Record"
+  },
+  "language": {
+    "place-holder": "Language",
+    "options": {
+      "spanish": "Spanish",
+      "english": "English"
+    }
+  }
+}

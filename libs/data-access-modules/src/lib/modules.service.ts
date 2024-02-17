@@ -14,17 +14,19 @@ export class ModulesService {
     options: IGetOptionsEntities<
       Prisma.ModulesWhereUniqueInput,
       Prisma.ModulesWhereInput,
-      Prisma.ModulesOrderByWithRelationInput
+      Prisma.ModulesOrderByWithRelationInput,
+      Prisma.ModulesSelect
     >
   ) {
     try {
-      const { skip, take, where, cursor, orderBy } = options;
+      const { skip, take, where, cursor, orderBy, select } = options;
       return await this.prismaService.modules.findMany({
         skip,
         take,
         where,
         cursor,
         orderBy,
+        select,
       });
     } catch (error: any) {
       throw new Error(error);

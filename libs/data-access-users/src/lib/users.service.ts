@@ -23,17 +23,19 @@ export class UsersService {
     options: IGetOptionsEntities<
       Prisma.UsersWhereUniqueInput,
       Prisma.UsersWhereInput,
-      Prisma.UsersOrderByWithRelationInput
+      Prisma.UsersOrderByWithRelationInput,
+      Prisma.UsersSelect
     >
   ) {
     try {
-      const { skip, take, where, cursor, orderBy } = options;
+      const { skip, take, where, cursor, orderBy, select } = options;
       return await this.prismaService.users.findMany({
         skip,
         take,
         where,
         cursor,
         orderBy,
+        select,
       });
     } catch (error: any) {
       throw new Error(error);

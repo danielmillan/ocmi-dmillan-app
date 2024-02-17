@@ -21,17 +21,19 @@ export class CustomersService {
     options: IGetOptionsEntities<
       Prisma.CustomersWhereUniqueInput,
       Prisma.CustomersWhereInput,
-      Prisma.CustomersOrderByWithRelationInput
+      Prisma.CustomersOrderByWithRelationInput,
+      Prisma.CustomersSelect
     >
   ) {
     try {
-      const { skip, take, where, cursor, orderBy } = options;
+      const { skip, take, where, cursor, orderBy, select } = options;
       return await this.prismaService.customers.findMany({
         skip,
         take,
         where,
         cursor,
         orderBy,
+        select,
       });
     } catch (error: any) {
       throw new Error(error);

@@ -21,17 +21,19 @@ export class RolesService {
     options: IGetOptionsEntities<
       Prisma.RolesWhereUniqueInput,
       Prisma.RolesWhereInput,
-      Prisma.RolesOrderByWithRelationInput
+      Prisma.RolesOrderByWithRelationInput,
+      Prisma.RolesSelect
     >
   ) {
     try {
-      const { skip, take, where, cursor, orderBy } = options;
+      const { skip, take, where, cursor, orderBy, select } = options;
       return await this.prismaService.roles.findMany({
         skip,
         take,
         where,
         cursor,
         orderBy,
+        select,
       });
     } catch (error: any) {
       throw new Error(error);

@@ -1,0 +1,114 @@
+{
+  "menu": {
+    "home": "Inicio",
+    "customers": "Clientes",
+    "employees": "Empleados",
+    "timesheets": "Nominas",
+    "config": "Configuración",
+    "roles": "Roles",
+    "users": "Usuarios"
+  },
+  "labels": {
+    "email": "Correo",
+    "password": "Contraseña",
+    "forgot-password": "He olvidado mi contraseña",
+    "login": "Iniciar sesión",
+    "parameters": "Parametros",
+    "language": "Idioma de la aplicación:"
+  },
+  "forms": {
+    "required-validation": "Ingrese la información",
+    "select-validation": "Seleccione una opción",
+    "employees": {
+      "name": "Nombres",
+      "lastName": "Apellidos",
+      "customer": "Cliente",
+      "customer-ph": "Seleccione un cliente",
+      "paymentType": "Tipo de Pago",
+      "paymentType-ph": "Seleccione un tipo",
+      "paymentAmount": "Monto",      
+      "button-create": "CREAR",
+      "button-edit": "EDITAR"
+    },
+    "notifications": {
+      "success": "Operación completada correctamente",
+      "error": "No se ha podido completar la operación"      
+    },
+    "confirmation": {
+      "content": "¿Estás seguro de que quieres continuar?",
+      "header": "Confirmación"
+    }
+  },
+  "pages": {
+    "login": {
+      "buttons": {
+        "submit": "ENTRAR"
+      }
+    },
+    "forgot": {
+      "buttons": {
+        "submit": "RESTABLECER CONTRASEÑA"
+      }
+    },
+    "form-validations": {
+      "required": {
+        "email": "Ingresa el correo.",
+        "password": "Ingresa la contraseña."
+      },
+      "format": {
+        "email": "El correo no es valido. E.g. example@email.com"
+      }
+    }
+  },
+  "table": {
+    "headers": {
+      "users": {
+        "id": "ID",
+        "name": "Nombre",
+        "email": "Correo",
+        "role": "Rol"
+      },
+      "roles": {
+        "id": "ID",
+        "name": "Nombre"
+      },
+      "customers": {
+        "id": "ID",
+        "name": "Nombre",
+        "address": "Dirección"
+      },
+      "employees": {
+        "id": "ID",
+        "name": "Nombre",
+        "lastName": "Apellido",
+        "paymentType": "Tipo de pago",
+        "paymentAmount": "Monto"
+      }
+    },
+    "actions": "Acciones",
+    "currentPageTemplate": "Mostrando {first} a {last} de {totalRecords}",
+    "emptyMessage": "No hay datos"
+  },
+  "button-actions": {
+    "create-customer": "Crear Cliente",
+    "edit-customer": "Editar Cliente",
+    "create-employee": "Crear Empleado",
+    "edit-employee": "Editar Empleado",
+    "create-role": "Crear Rol",
+    "edit-role": "Editar Rol",
+    "create-timesheet": "Registrar Nomina",
+    "create-user": "Crear Usuario",
+    "edit-user": "Editar Usuario"
+  },
+  "tooltips": {
+    "edit": "Editar Registro",
+    "delete": "Eliminar Registro"
+  },
+  "language": {
+    "place-holder": "Idioma",
+    "options": {
+      "spanish": "Español",
+      "english": "Ingles"
+    }
+  }
+}

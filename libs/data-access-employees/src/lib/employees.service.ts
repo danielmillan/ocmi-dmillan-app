@@ -21,18 +21,28 @@ export class EmployeesService {
     options: IGetOptionsEntities<
       Prisma.EmployeesWhereUniqueInput,
       Prisma.EmployeesWhereInput,
-      Prisma.EmployeesOrderByWithRelationInput
+      Prisma.EmployeesOrderByWithRelationInput,
+      Prisma.EmployeesSelect
     >
   ) {
     try {
-      const { skip, take, where, cursor, orderBy } = options;
+      const { skip, take, where, cursor, orderBy, select } = options;
       return await this.prismaService.employees.findMany({
         skip,
         take,
         where,
         cursor,
         orderBy,
+        select,
       });
+    } catch (error: any) {
+      throw new Error(error);
+    }
+  }
+
+  async getPaymentTypes() {
+    try {
+      return await this.prismaService.payment_Types.findMany();
     } catch (error: any) {
       throw new Error(error);
     }

@@ -21,17 +21,19 @@ export class TimesheetsService {
     options: IGetOptionsEntities<
       Prisma.TimesheetsWhereUniqueInput,
       Prisma.TimesheetsWhereInput,
-      Prisma.TimesheetsOrderByWithRelationInput
+      Prisma.TimesheetsOrderByWithRelationInput,
+      Prisma.TimesheetsSelect
     >
   ) {
     try {
-      const { skip, take, where, cursor, orderBy } = options;
+      const { skip, take, where, cursor, orderBy, select } = options;
       return await this.prismaService.timesheets.findMany({
         skip,
         take,
         where,
         cursor,
         orderBy,
+        select,
       });
     } catch (error: any) {
       throw new Error(error);
