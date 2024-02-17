@@ -6,5 +6,10 @@ export type Users = {
 };
 
 export type RequestBodys = {
-  data: Credentials | Prisma.EmployeesUncheckedCreateInput;
+  data:
+    | Credentials
+    | Prisma.EmployeesUncheckedCreateInput
+    | Prisma.CustomersUncheckedCreateInput
+    | Prisma.RolesUncheckedCreateInput
+    | Prisma.UsersUncheckedCreateInput;
 };

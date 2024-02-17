@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
-    Prisma,
-    Employees,
+    Prisma,    
 } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
 import TextControl from '../../form/controls/text';
 import { useTranslation } from 'react-i18next';

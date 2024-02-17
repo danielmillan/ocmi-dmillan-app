@@ -15,7 +15,6 @@ export default function LanguagePicker({ isMobile = false }) {
     const { i18n } = useTranslation();
 
     useEffect(() => {
-        console.log(router.locale)
         i18n.changeLanguage(router.locale);
     }, [router]);
 

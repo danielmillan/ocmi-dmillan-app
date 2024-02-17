@@ -1,9 +1,11 @@
 import { API_ENDPOINTS } from '../data/constants';
-import { Customers } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
+import { Prisma } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
 import fetch from './instance';
 
 export class CustomersService {
-  public static async createCustomer(customer: Customers) {
+  public static async createCustomer(
+    customer: Prisma.CustomersUncheckedCreateInput
+  ) {
     return fetch.post(`${API_ENDPOINTS.CUSTOMERS}`, { data: customer });
   }
 

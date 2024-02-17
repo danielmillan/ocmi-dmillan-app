@@ -1,9 +1,9 @@
 import { API_ENDPOINTS } from '../data/constants';
-import { Roles } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
+import { Prisma } from '@ocmi-dmillan-app/ocmi-dmillan-prisma-client';
 import fetch from './instance';
 
 export class RolesService {
-  public static async createRole(role: Roles) {
+  public static async createRole(role: Prisma.RolesUncheckedCreateInput) {
     return fetch.post(`${API_ENDPOINTS.ROLES}`, { data: role });
   }
 
